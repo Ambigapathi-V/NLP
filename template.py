@@ -30,7 +30,7 @@ list_of_files = [
     "requirements.txt",
     "setup.py",
     "demo.py",
-    "Dockerfile"
+    "Dockerfile",
     ".dockerignore",
 ]
 
