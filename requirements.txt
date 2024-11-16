@@ -1,6 +1,6 @@
 numpy
 pandas
-tensorflow==2.9.2
+tensorflow==2.14.1
 matplotlib
 seaborn
 nltk
