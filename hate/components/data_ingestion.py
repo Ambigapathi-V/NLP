@@ -3,7 +3,7 @@ import sys
 from zipfile import ZipFile
 from hate.logger import logging
 from hate.exception import CustomException
-from hate.configuration.dagshub_sync import download_file
+from hate.configuration.dagshub_sync import dagshub_sync
 from hate.entity.config_entity import DataIngestionConfig
 from hate.entity.artifact_entity import DataIngestionArtifacts
 
@@ -15,7 +15,7 @@ class DataIngestion:
         try:
             logging.info('Downloading data from S3 bucket')
             os.makedirs(self.data_ingestion_config.DATA_INGESTION_ARTIFACTS_DIR, exist_ok=True)
-            download_file(download_directory=self.data_ingestion_config.DATA_INGESTION_ARTIFACTS_DIR)
+            dagshub_sync.download_file(download_directory=self.data_ingestion_config.DATA_INGESTION_ARTIFACTS_DIR)
             logging.info('Data downloaded successfully')
         except Exception as e:
             raise CustomException(e, sys) from e
@@ -29,6 +29,8 @@ class DataIngestion:
                 return self.data_ingestion_config.DATA_ARTIFACTS_DIR,self.data_ingestion_config.NEW_DATA_ARTIFACTS_DIR
         except Exception as e:
             raise CustomException(e, sys) from e
+        
+    
         
     def initiate_data_ingestion(self) ->DataIngestionArtifacts:
         logging.info('Data Ingestion initiated')
