@@ -15,11 +15,14 @@ train = TrainPipeline()
 app = FastAPI()
 
 # Load tokenizer and model
-with open("tokenizer.pickle", "rb") as handle:
+with open("model/tokenizer.pickle", "rb") as handle:
     tokenizer = pickle.load(handle)
     
 
 logged_model = 'runs:/448f80aaaf804fe19d3aa81c7bbd51ac/model'
+
+
+
 
 # Load model as a PyFuncModel.
 loaded_model = mlflow.pyfunc.load_model(logged_model)
@@ -28,6 +31,7 @@ loaded_model = mlflow.pyfunc.load_model(logged_model)
 
 model = tf.keras.models.load_model("artifacts/ModelTrainerArtifacts/model.h5")
 
+logging.info("Model loaded successfully.")
 # Define maximum length for padding
 MAX_LEN = 300  # Adjust based on your model's configuration
 
@@ -47,11 +51,14 @@ def predict_text(text):
     try:
         # Preprocess the input text by converting it to sequences
         sequences = tokenizer.texts_to_sequences([text])
+        logging.info(f"Text sequence completed: {sequences}")
 
         # Pad the sequences to ensure consistent input length for the model
         sequences_matrix = pad_sequences(sequences, maxlen=MAX_LEN)
+        logging.info(f"Padded sequence completed: {sequences_matrix}")
         
         prediction= loaded_model.predict(sequences_matrix)
+        logging.info(f"Prediction completed: {prediction}")
 
 
         # Convert predictions to binary labels ('Offensive Language' or 'Hate Speech')
