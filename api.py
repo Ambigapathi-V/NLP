@@ -7,7 +7,7 @@ from keras.utils import pad_sequences
 import mlflow
 import os
 import sys
-
+from dagshub.auth import basic_auth
 from hate.logger import logging
 from hate.exception import CustomException
 from hate.pipeline.train_pipeline import TrainPipeline
@@ -16,8 +16,7 @@ from hate.pipeline.train_pipeline import TrainPipeline
 dagshub_token = os.getenv("DAGSHUB_TOKEN")
 if not dagshub_token:  
     raise Exception("❗ DAGSHUB_TOKEN is not set in the environment variables.")
-
-import os
+basic_auth(username="Ambigapathi-V", password=dagshub_token)
 os.environ['CUDA_VISIBLE_DEVICES'] = '-1'
 
 # TrainPipeline instance
