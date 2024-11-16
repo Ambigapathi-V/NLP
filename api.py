@@ -1,3 +1,4 @@
+import dagshub.auth
 from fastapi import FastAPI, HTTPException
 from pydantic import BaseModel
 import pickle
@@ -7,7 +8,7 @@ from keras.utils import pad_sequences
 import mlflow
 import os
 import sys
-from dagshub.auth import basic_auth
+import dagshub
 from hate.logger import logging
 from hate.exception import CustomException
 from hate.pipeline.train_pipeline import TrainPipeline
@@ -16,7 +17,10 @@ from hate.pipeline.train_pipeline import TrainPipeline
 dagshub_token = os.getenv("DAGSHUB_TOKEN")
 if not dagshub_token:  
     raise Exception("❗ DAGSHUB_TOKEN is not set in the environment variables.")
-basic_auth(username="Ambigapathi-V", password=dagshub_token)
+
+# Set the dagshub token for authentication
+dagshub.auth.tokens = dagshub_token
+#basic_auth(username="Ambigapathi-V", password=dagshub_token)
 os.environ['CUDA_VISIBLE_DEVICES'] = '-1'
 
 # TrainPipeline instance
