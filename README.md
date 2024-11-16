@@ -1,4 +1,5 @@
-![](https://github.com/pragyy/datascience-readme-template/blob/main/Headerheader.jpg)
+![](https://github.com/Ambigapathi-V/NLP/blob/main/img/fujiphilm-VgU5zIEy57A-unsplash.jpg)
+![](https://github.com/Ambigapathi-V/NLP/blob/main/img/pexels-shareef-murtuza-mohiuddin-865573934-22710781.jpg,,)
 
 # NLP Pipeline for Text Analysis
 
