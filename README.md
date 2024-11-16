@@ -1,4 +1,5 @@
-![](https://github.com/pragyy/datascience-readme-template/blob/main/Headerheader.jpg)
+![](https://github.com/Ambigapathi-V/NLP/blob/main/img/fujiphilm-VgU5zIEy57A-unsplash.jpg)
+![](https://github.com/Ambigapathi-V/NLP/blob/main/img/pexels-shareef-murtuza-mohiuddin-865573934-22710781.jpg,,)
 
 # NLP Pipeline for Text Analysis
 
@@ -236,11 +237,11 @@ This section summarizes the performance of the Long Short-Term Memory (LSTM) mod
 
 The LSTM model was evaluated using the following metrics:
 
-- **Accuracy**: X%
-- **Precision**: Y%
-- **Recall**: Z%
-- **F1 Score**: W%
-- **ROC-AUC**: V%
+- **Accuracy**: 87%
+- **Precision**: 80%
+- **Recall**: 85%
+- **F1 Score**: 82%
+- **ROC-AUC**: 90%
 
 ### Key Findings
 
