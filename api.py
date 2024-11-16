@@ -8,6 +8,12 @@ from hate.logger import logging
 from hate.exception import CustomException
 from hate.pipeline.train_pipeline import TrainPipeline
 import mlflow
+import os
+
+dagshub_token = os.getenv("DAGSHUB_TOKEN")
+if dagshub_token is None:
+    raise Exception("Dagshub token is not set in the environment variables.")
+
 
 train = TrainPipeline()
 
