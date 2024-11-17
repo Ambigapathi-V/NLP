@@ -8,20 +8,20 @@ from keras.utils import pad_sequences
 import mlflow
 import os
 import sys
-import dagshub
+#import dagshub
 from hate.logger import logging
 from hate.exception import CustomException
 from hate.pipeline.train_pipeline import TrainPipeline
 
 # Validate Dagshub token
-dagshub_token = os.getenv("DAGSHUB_TOKEN")
-if not dagshub_token:  
-    raise Exception("❗ DAGSHUB_TOKEN is not set in the environment variables.")
+#dagshub_token = os.getenv("DAGSHUB_TOKEN")
+#if not dagshub_token:  
+#    raise Exception("❗ DAGSHUB_TOKEN is not set in the environment variables.")
 
 # Set the dagshub token for authentication
-dagshub.auth.tokens = dagshub_token
+#dagshub.auth.tokens = dagshub_token
 #basic_auth(username="Ambigapathi-V", password=dagshub_token)
-os.environ['CUDA_VISIBLE_DEVICES'] = '-1'
+#os.environ['CUDA_VISIBLE_DEVICES'] = '-1'
 
 # TrainPipeline instance
 train = TrainPipeline()
@@ -39,13 +39,13 @@ except FileNotFoundError:
     raise Exception("Tokenizer file is missing.")
 
 # Load MLflow model (if using it)
-logged_model = 'runs:/448f80aaaf804fe19d3aa81c7bbd51ac/model'
-try:
-    loaded_model = mlflow.pyfunc.load_model(logged_model)
-    logging.info("✅ MLflow model loaded successfully.")
-except Exception as e:
-    logging.error(f"❌ Failed to load MLflow model: {e}")
-    loaded_model = None
+#logged_model = 'runs:/448f80aaaf804fe19d3aa81c7bbd51ac/model'
+#try:
+#    loaded_model = mlflow.pyfunc.load_model(logged_model)
+#    logging.info("✅ MLflow model loaded successfully.")
+#except Exception as e:
+#    logging.error(f"❌ Failed to load MLflow model: {e}")
+#    loaded_model = None
 
 # Load TensorFlow model (if using it)
 try:
