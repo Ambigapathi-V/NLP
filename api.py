@@ -11,6 +11,7 @@ from fastapi.responses import Response
 from fastapi.templating import Jinja2Templates
 from hate.pipeline.predict_pipeline import PredictionPipeline
 import uvicorn
+from pydantic import BaseModel
 
 app = FastAPI()
 
@@ -34,4 +35,4 @@ async def predict(text: str):
     
 
 if __name__ == "__main__":
-    uvicorn.run(app, host="0.0.0.0", port=8000)
+    uvicorn.run(app, host="localhost", port=8000)
