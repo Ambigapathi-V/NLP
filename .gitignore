@@ -164,3 +164,5 @@ data/
 logs/
 artifacts/
 venv/
+mlruns/
+
