@@ -77,7 +77,7 @@ class ModelEvaluation:
                 mlflow.log_metric("test_recall", recall)
                 mlflow.log_metric("test_f1_score", f1)
                 mlflow.log_metric("test_roc_auc", roc_auc)
-                mlflow.log_metric("test_confusion_matrix", str(cm))  # Convert cm to string to log
+                mlflow.log_metric("test_confusion_matrix", (cm))  # Convert cm to string to log
                 mlflow.log_metric("test_classification_report", cr)
 
             # Returning accuracy
