@@ -14,6 +14,11 @@ import uvicorn
 
 app = FastAPI()
 
+
+# Create a Pydantic model to define the input body
+class TextInput(BaseModel):
+    text: str
+
 @app.get("/",tags=['authentication'])
 async def index():
     return RedirectResponse(url="/docs")
@@ -22,7 +27,7 @@ async def index():
 async def predict(text: str):
     try:
         obj = PredictionPipeline()
-        result = obj.predict(text)
+        result = obj.predict(input_data=text)
         return {"prediction": result}
     except Exception as e:
         raise CustomException(sys,e)
