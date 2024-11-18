@@ -32,7 +32,6 @@ debugpy==1.8.8
 decorator==5.1.1
 Deprecated==1.2.15
 docker==7.1.0
-distutils
 entrypoints==0.4
 exceptiongroup==1.2.2
 executing==2.1.0
@@ -150,6 +149,7 @@ sqlparse==0.5.2
 stack-data==0.6.3
 starlette==0.41.2
 streamlit==1.22.0
+setuptools>=65.5.0
 tenacity==8.5.0
 tensorboard==2.13.0
 tensorboard-data-server==0.7.2
