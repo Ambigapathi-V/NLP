@@ -121,7 +121,7 @@ class ModelTrainer:
             logging.info("Model training finished")
 
             # Saving tokenizer
-            with open('tokenizer.pickle', 'wb') as handle:
+            with open('model/tokenizer.pickle', 'wb') as handle:
                 pickle.dump(tokenizer, handle, protocol=pickle.HIGHEST_PROTOCOL)
 
             os.makedirs(self.model_trainer_config.TRAINED_MODEL_DIR, exist_ok=True)
@@ -132,6 +132,8 @@ class ModelTrainer:
             # Save model to MLflow
             artifact_path = "artifacts/model_trainer/"
             os.makedirs(artifact_path, exist_ok=True)
+            # save in local directory
+            model.save('model/model.h5')
             mlflow.keras.log_model(model, "model")
             dagshub_sync.upload_files(local_directory = artifact_path, bucket_name = 'NLP',)
             #dagshub.upload_to_bucket(local_directory = artifact_path, bucket_name = 'NLP')

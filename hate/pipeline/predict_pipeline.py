@@ -1,45 +1,41 @@
 import os
 import sys
 import pickle
+import numpy as np
 from tensorflow.keras.preprocessing.sequence import pad_sequences
 from hate.logger import logging
 import tensorflow as tf
 from hate.exception import CustomException
-
 from tensorflow.keras.layers import SpatialDropout1D
 
 
 class PredictionPipeline:
-    def __init__(self, model_directory: str = None, tokenizer_path: str = None,):
+    def __init__(self, model_directory: str = None, tokenizer_path: str = None):
         self.model_directory = model_directory or os.path.join('model', 'model.h5')
         self.tokenizer_path = tokenizer_path or os.path.join('model', 'tokenizer.pickle')
         self.model = None
         self.tokenizer = None
-       
 
     def load_model(self):
         """Load the local Keras model."""
         if self.model is None:
             try:
                 logging.info(f"Loading the Keras model from {self.model_directory}")
+                logging.info(f'Tensorflow version: {tf.__version__}")')
                 if not os.path.exists(self.model_directory):
                     raise CustomException(f"Model file not found at {self.model_directory}", sys)
 
-                # Load the model from the specified path
                 custom_objects = {'SpatialDropout1D': SpatialDropout1D}
-                #import mlflow
-                #logged_model = 'runs:/b6a184c62f964e569dc12312b1574b8f/model'
 
-                # Load model as a PyFuncModel.
-                #loaded_model = mlflow.pyfunc.load_model(logged_model)
-
-                # Predict on your data.
-                #data = # Code to load a data sample or samples
-                #loaded_model.predict(data)
+                # Load model with custom objects
                 self.model = tf.keras.models.load_model('model/model.h5', custom_objects=custom_objects)
                 logging.info("Model loaded successfully")
-                
+
+            except TypeError as te:
+                logging.error(f"Error during model deserialization: {te}")
+                raise CustomException(f"Model loading error: {str(te)}", sys)
             except Exception as e:
+                logging.error(f"Unexpected error: {str(e)}")
                 raise CustomException(f"Error loading model: {str(e)}", sys)
         return self.model
 
@@ -64,15 +60,15 @@ class PredictionPipeline:
         """Clean, tokenize, and pad the input text."""
         try:
             logging.info("Preprocessing the input text")
-           
-
             tokenizer = self.load_tokenizer()
             tokenized_text = tokenizer.texts_to_sequences([text])
-            padded_text = pad_sequences(tokenized_text, maxlen=300)
+            
+            # Ensure padding length matches model input requirements
+            padded_text = pad_sequences(tokenized_text, maxlen=300)  # Adjust maxlen if needed
             logging.info(f"Text tokenized and padded. Shape: {padded_text.shape}")
             return padded_text
         except Exception as e:
-            raise CustomException(sys, e)
+            raise CustomException(f"Error preprocessing text: {str(e)}", sys)
 
     def predict(self, text, threshold=0.5):
         """Predict whether the input text is hateful."""
@@ -81,16 +77,18 @@ class PredictionPipeline:
             model = self.load_model()
             processed_text = self.preprocess_text(text)
 
-            # Perform prediction
+            # Perform prediction and ensure it's a scalar value
             prediction = model.predict(processed_text)
-            logging.info(f"Prediction result: {prediction}")
+            prediction_value = prediction[0] if isinstance(prediction, np.ndarray) else prediction
+
+            logging.info(f"Prediction result: {prediction_value}")
 
             # Interpret prediction
-            if prediction > threshold:
+            if prediction_value > threshold:
                 logging.info("Detected hateful content")
                 return "Hateful and Abusive"
             else:
                 logging.info("Detected non-hateful content")
                 return "Not Hateful"
         except Exception as e:
-            raise CustomException(sys, e)
+            raise CustomException(f"Error during prediction: {str(e)}", sys)

@@ -1,6 +1,10 @@
 numpy 
 pandas 
-tensorflow==2.16.1
+tensorflow==2.18.0
+flatbuffers>=24.3.25
+keras>=3.5.0
+protobuf>=3.20.3,<4.21.0
+tensorboard>=2.18
 matplotlib
 seaborn
 nltk
@@ -11,3 +15,5 @@ dagshub
 fastapi==0.78.0
 uvicorn==0.18.3
 Jinja2==3.1.2
+mlflow
+-e .
