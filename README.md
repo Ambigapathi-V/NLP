@@ -1,5 +1,5 @@
-![](https://github.com/Ambigapathi-V/NLP/blob/main/img/fujiphilm-VgU5zIEy57A-unsplash.jpg)
-![](https://github.com/Ambigapathi-V/NLP/blob/main/img/pexels-shareef-murtuza-mohiuddin-865573934-22710781.jpg,,)
+![](https://github.com/Ambigapathi-V/NLP/blob/main/img/download%20(3).jpeg)
+
 
 # NLP Pipeline for Text Analysis
 
@@ -14,7 +14,7 @@
 
 ## Project Overview
 
-This project is an end-to-end Natural Language Processing (NLP) pipeline designed for text analysis. It aims to streamline the process of data ingestion, preprocessing, and model training to extract meaningful insights from textual data. The pipeline supports various NLP tasks, including sentiment analysis, topic modeling, and text classification, making it a versatile tool for researchers and developers alike.
+This project is an end-to-end Natural Language Processing (NLP) pipeline for predicting hateful and Abusive news. It aims to streamline data ingestion, preprocessing, and model training to extract meaningful insights from textual data. The pipeline supports various NLP tasks, including sentiment analysis, topic modeling, and text classification, making it a versatile tool for researchers and developers alike.
 
 The project incorporates modern techniques in NLP, leveraging libraries such as NLTK, SpaCy, and TensorFlow to deliver robust performance. By providing a comprehensive framework, this project enables users to easily adapt and extend the pipeline for their specific needs, facilitating efficient experimentation and deployment in real-world applications.
 
@@ -43,12 +43,12 @@ The project incorporates modern techniques in NLP, leveraging libraries such as 
 
 ## Demo
 
-![App link]()
+![App link](https://hateful-abusive-prediction.streamlit.app/)
 
 
 ## Screenshots
 
-![App Screenshot](https://via.placeholder.com/468x300?text=App+Screenshot+Here)
+![App Screenshot](https://github.com/Ambigapathi-V/NLP/blob/main/img/image.png)
 
 
 
