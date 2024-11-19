@@ -45,7 +45,7 @@ The project incorporates modern techniques in NLP, leveraging libraries such as 
 
 ## Demo
 
-![App link](https://hateful-abusive-prediction.streamlit.app/)
+You can access the deployed application here: [Hateful and Abusive Content Prediction App](https://hateful-abusive-prediction.streamlit.app/).  
 
 
 ## Screenshots
