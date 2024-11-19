@@ -1,7 +1,9 @@
 ![](https://github.com/Ambigapathi-V/NLP/blob/main/img/download%20(3).jpeg)
 
 
-# NLP Pipeline for Text Analysis
+#  Text Prediction Hateful and Abusive
+
+
 
 ![GitHub release (latest by date including pre-releases)](https://img.shields.io/github/v/release/pragyy/datascience-readme-template?include_prereleases)
 ![GitHub last commit](https://img.shields.io/github/last-commit/pragyy/datascience-readme-template)
