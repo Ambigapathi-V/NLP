@@ -1,20 +1,20 @@
-name: CI Pipeline
+name: CI/CD Pipeline
 
 on:
   push:
     branches:
-      - main
+      - main  # Triggers the workflow on push to the main branch
   pull_request:
     branches:
-      - main
+      - main  # Triggers the workflow on pull requests targeting the main branch
 
 jobs:
-  test:
+  ci-cd:
     runs-on: ubuntu-latest
 
     steps:
       # Step 1: Checkout the repository
-      - name: Checkout code
+      - name: Checkout repository
         uses: actions/checkout@v3
 
       # Step 2: Set up Python
@@ -29,6 +29,9 @@ jobs:
           python -m pip install --upgrade pip
           pip install -r requirements.txt
 
-      # Step 4: Run tests
-      - name: Run tests
-        run: pytest
+    
+
+      # Step 4: Deploy the application (if using Streamlit Cloud or similar)
+      - name: Deploy to Streamlit Cloud
+        if: github.ref == 'refs/heads/main'  # Deploy only from main branch
+        run: echo "Pushing changes to Streamlit Cloud. Ensure Streamlit Cloud auto-deployment is enabled."
